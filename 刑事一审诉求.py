@@ -1,38 +1,43 @@
-###Initial framework
+#Inital format
 import json
 import re
-###导入文本文件并把感兴趣的部分存入到相应的大字典里面，大字典的key是案件的id号，每个key对应的value又是一个小字典，每个小字典包含
-###当事人，审理经过，公诉机关称，裁判结果
-dict_crime_first_instances = {}
-dict_crime_first_instance_tmp = {'当事人': '', '审理经过': '',  '公诉机关称':'', '裁判结果':''}
+
+dict_crime_first_instances = {} #{'id':{'当事人':'', '审理经过':'',  '本院认为':'', '裁判结果':''}...}
+dict_crime_first_instance_tmp = {'当事人':'', '审理经过':'',  '本院认为':'', '裁判结果':'', '公诉机关称':''} #提取模板
 filename = u'C://Users//Administrator//Desktop//深度学习入门//把手网数据集//6.1课题四案件评查与减假暂//把手案例网数据_small//dataset_small//criminal.json'
 file = open(filename,'r', encoding = 'utf-8')
 
-###提取每一个案件并建立好大字典
 while 1:
     line = file.readline()
-    try:
-        if(json.loads(line)['procedureId'] == "一审"):
-            dict_crime_first_instances[json.loads(line)['id']] = {}
-            for key in dict_crime_first_instance_tmp.keys():
-                dict_crime_first_instances[json.loads(line)['id']][key] = json.loads(line)[key]
-    except:
-        pass
     if not line:
         break
+    try:
+        if(json.loads(line)['procedureId'] == "一审"):
+            dict_crime_first_instances[json.loads(line)['id']] = {} #{...{'id':{}}}
+            for key in dict_crime_first_instance_tmp.keys():
+                #防止不匹配导致提取信息不足
+                try:
+                    dict_crime_first_instances[json.loads(line)['id']][key] = json.loads(line)[key]
+                except:
+                    continue
+    except:
+        pass
 
-###提取刑事一审诉求
-dict_crime_first_instance_appeal = {}  #建立一个诉求字典，key为案件id，value为相应的诉求字符串
-
-#从“审理经过”中初步提取
-error_list1 = []       #错误列表1
+#刑事一审诉请提取
+dict_crime_first_instance_appeal = {}
+#从"审理经过"中初步提取
+error_list1 = []    #错误列表1
 for key, value in dict_crime_first_instances.items():
     try:
+        #{...'id':'诉请句'}；用的是审理经过的value作为string
         dict_crime_first_instance_appeal[key] = re.findall(r"指控被告人.*犯.*罪|被告人.*罪|被告人.*某.*一案|被告人.*一案|指控.*罪", value['审理经过'])[0]
     except:
         error_list1.append((key, value))
+        #print((key,value))
 
-#将已经提取过的诉求进行简化使其只包含关键词
+
+#将已经提取过的诉求进行简化使其只包含关键词]
+num = 0
 error_list2 = []       #错误列表2
 for key, value in dict_crime_first_instance_appeal.items():
     try:
@@ -41,12 +46,43 @@ for key, value in dict_crime_first_instance_appeal.items():
         error_list2.append((key, value))
 
 #对于错误列表1中的尝试从“当事人”项中提取并放入到诉求中
-for i in error_list1:
+for i in error_list1[:]:
     try:
-        dict_crime_first_instance_appeal[i[0]] = re.findall(r"(?<=因).*罪|(?<=犯).*罪", i[1]['当事人'])[0]
+        #i[0]为id
+        dict_crime_first_instance_appeal[i[0]] = re.findall(r"因涉嫌.*(?=现羁押.*)|因涉嫌.*(?=现关押.*)|证据指控被告人.*构成.*罪|证据指控被告人.*犯.*罪|认为被告人.*构成.*罪|起诉书指控.*犯.*罪", i[1]['当事人'])[0]
+        #print(dict_crime_first_instance_appeal[i[0]])#debug
+        error_list1.remove(i)     #把error_list1中成功通过“当事人”处理之后的项目移除
     except:
         try:
             error_list2.append((i[0], i[1]['当事人']))
         except:
             pass
-        pass    
+        pass
+
+#对于错误列表1中的尝试从“公诉机关称”项中提取并放入到诉求中
+for i in error_list1[:]:
+    try:
+        dict_crime_first_instance_appeal[i[0]] = re.findall(r"(?<=指控).*犯.*罪|因涉嫌.*(?=现关押.*)|证据指控被告人.*构成.*罪|证据指控被告人.*犯.*罪|认为被告人.*构成.*罪|起诉书指控.*犯.*罪", i[1]['公诉机关称'])[0]
+        error_list1.remove(i)
+    except:
+        try:
+            error_list2.append((i[0], i[1]['公诉机关称']))
+        except:
+            pass
+        pass
+# for i in error_list2:
+#     print(i)
+#debug
+
+dict_crime_first_instance_reply = {}
+
+error_list3 = []
+for key, value in dict_crime_first_instances.items():
+    try:
+        try:
+        #{...'id':'诉请句'}；用的是审理经过的value作为string
+            dict_crime_first_instance_reply[key] = re.findall(r"(?<=被告人).*犯.*罪|某.*判处", value['裁判结果'])[0]
+        except:
+            error_list3.append((key,value))
+    except:
+        error_list3.append((key, value))
