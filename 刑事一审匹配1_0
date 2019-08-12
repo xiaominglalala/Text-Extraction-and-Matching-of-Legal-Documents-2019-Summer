@@ -1,0 +1,35 @@
+#简单地写了一个最暴力的版本，运行会花到8s的时间，之后有时间可能需要改算法
+#匹配率97%说明前面的提取部分可能还需要改进，毕竟法律文书匹配率应该不至于只有97%
+import csv
+
+filename1 = u'C://Users//Administrator//Desktop//深度学习入门//把手网数据集//6.1课题四案件评查与减假暂//把手案例网数据_small//dataset_small//罪名.csv'
+csv_reader = csv.reader(open(filename1,'r', encoding='UTF-8-sig'))
+accusations = []
+for row in csv_reader:
+    accusations.append(row[0])
+
+right = 0
+total = 0
+for key, value in dict_crime_first_instance_appeal.items():
+    total += 1
+    match_list_appeal = [0 for i in range(len(accusations))]
+    match_list_reply = [0 for i in range(len(accusations))]
+    for extracted_appeal in value:
+        for i in range(len(accusations)):
+            if (re.search(accusations[i], extracted_appeal) != None):
+                match_list_appeal[i] = 1
+    for extracted_reply in dict_crime_first_instance_reply[key]:
+        for i in range(len(accusations)):
+            if (re.search(accusations[i], extracted_reply) != None):
+                match_list_reply[i] = 1
+    flag = True
+    for index in range(len(match_list_appeal)):
+        if match_list_appeal[index] == 1:
+            if match_list_reply[index] != 1:
+                flag = False
+                break
+    if flag:
+        right += 1 
+
+print('match:', right, 'total:', total, 'match_rate:', right/total*100, '%' )
+        
