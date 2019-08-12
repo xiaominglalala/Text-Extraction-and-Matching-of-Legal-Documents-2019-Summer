@@ -45,7 +45,7 @@ for key, value in dict_crime_first_instance_appeal.items():
         error_list2.append((key, value))
 
 #对于错误列表1中的尝试从“当事人”项中提取并放入到诉求中
-for i in error_list1:
+for i in error_list1[:]:
     try:
         #i[0]为id
         dict_crime_first_instance_appeal[i[0]] = re.findall(r"因涉嫌.*(?=现羁押.*)|因涉嫌.*(?=现关押.*)|证据指控被告人.*构成.*罪|证据指控被告人.*犯.*罪|认为被告人.*构成.*罪|起诉书指控.*犯.*罪", i[1]['当事人'])[0]
@@ -87,6 +87,6 @@ for key, value in dict_crime_first_instances.items():
             error_list3.append((key,value))
     except:
         error_list3.append((key, value))
-
+#debug
 for i in dict_crime_first_instance_reply.items():
     print(i)
