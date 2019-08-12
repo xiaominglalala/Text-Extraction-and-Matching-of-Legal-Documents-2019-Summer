@@ -82,7 +82,7 @@ for key, value in dict_crime_first_instances.items():
     try:
         try:
         #{...'id':'诉请句'}；用的是审理经过的value作为string
-            dict_crime_first_instance_reply[key] = re.findall(r"；*犯.*罪|(?<=被告人).*犯.*罪(?=判处.*)|某.*判处", value['裁判结果'])
+            dict_crime_first_instance_reply[key] = re.findall(r"；.*犯.*罪|(?<=被告人)*犯.*罪|某.*犯.*罪(?=判处.*)", value['裁判结果'])
         except:
             error_list3.append((key,value))
     except:
