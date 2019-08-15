@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba1b6a57-1d6f-46d7-933d-13ef85469cee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_criminal_appel.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_criminal_appel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/刑事诉求与回应2_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/刑事诉求与回应2_0.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/刑事诉求与回应2_0.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2033">
-              <caret line="111" selection-start-line="111" selection-end-line="111" />
+            <state relative-caret-position="133">
+              <caret line="7" column="93" selection-start-line="7" selection-start-column="93" selection-end-line="7" selection-end-column="93" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
               </folding>
@@ -39,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/get_criminal_appel_reply.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="82" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="82" />
+            <state relative-caret-position="2888">
+              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
               </folding>
@@ -66,7 +65,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/刑事一审匹配1_0">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
+            <state relative-caret-position="209">
               <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
             </state>
           </provider>
@@ -107,11 +106,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/刑事诉求与回应2_0.py" />
         <option value="$PROJECT_DIR$/get_criminal_appel&amp;reply.py" />
-        <option value="$PROJECT_DIR$/get_criminal_appel_reply.py" />
         <option value="$PROJECT_DIR$/get_criminal_appel.py" />
         <option value="$PROJECT_DIR$/match.py" />
+        <option value="$PROJECT_DIR$/get_criminal_appel_reply.py" />
+        <option value="$PROJECT_DIR$/刑事诉求与回应2_0.py" />
       </list>
     </option>
   </component>
@@ -321,12 +320,12 @@
       <workItem from="1565591495483" duration="13400000" />
       <workItem from="1565763653383" duration="298000" />
       <workItem from="1565763979250" duration="154000" />
-      <workItem from="1565764159527" duration="1467000" />
+      <workItem from="1565764159527" duration="1716000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15319000" />
+    <option name="totallyTimeSpent" value="15568000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -338,10 +337,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.261924" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.261924" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -399,11 +398,6 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/get_criminal_appel_reply.py</url>
-          <line>155</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/match.py</url>
           <line>32</line>
           <option name="timeStamp" value="17" />
@@ -457,16 +451,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/刑事诉求与回应2_0.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2033">
-          <caret line="111" selection-start-line="111" selection-end-line="111" />
-          <folding>
-            <element signature="e#15#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/罪名.csv">
       <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
@@ -490,13 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/刑事一审匹配1_0">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/match.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -509,8 +486,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/get_criminal_appel_reply.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="82" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="82" />
+        <state relative-caret-position="2888">
+          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+          <folding>
+            <element signature="e#15#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/刑事一审匹配1_0">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/刑事诉求与回应2_0.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="93" selection-start-line="7" selection-start-column="93" selection-end-line="7" selection-end-column="93" />
           <folding>
             <element signature="e#15#26#0" expanded="true" />
           </folding>

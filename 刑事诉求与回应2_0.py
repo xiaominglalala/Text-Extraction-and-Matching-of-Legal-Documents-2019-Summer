@@ -5,7 +5,7 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 
-dict_crime_first_instances = {} #{'id':{'当事人':'', '审理经过':'',  '本院认为':'', '裁判结果':''}...}
+dict_crime_first_instances = {} #{'id':{'当事人':'', '审理经过':'',  '本院认为':'', '裁判结果':'','公诉机关称':''}...}
 dict_crime_first_instance_tmp = {'当事人':'', '审理经过':'',  '本院认为':'', '裁判结果':'','公诉机关称':''} #提取模板
 filename = u'C://Users//Administrator//Desktop//深度学习入门//把手网数据集//6.1课题四案件评查与减假暂//把手案例网数据_small//dataset_small//criminal.json'
 file = open(filename,'r', encoding = 'utf-8')
