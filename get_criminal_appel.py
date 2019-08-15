@@ -1,6 +1,10 @@
 #Inital format
 import json
 import re
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+
 
 dict_crime_first_instances = {} #{'id':{'当事人':'', '审理经过':'',  '本院认为':'', '裁判结果':''}...}
 dict_crime_first_instance_tmp = {'当事人':'', '审理经过':'',  '本院认为':'', '裁判结果':'','公诉机关称':''} #提取模板
@@ -30,7 +34,7 @@ error_list1 = []    #错误列表1
 for key, value in dict_crime_first_instances.items():
     try:
         #{...'id':'诉请句'}；用的是审理经过的value作为string
-        dict_crime_first_instance_appeal[key] = re.findall(r"指控被告人.*犯.*罪|被告人.*罪|被告人.*某.*一案|被告人.*一案|指控.*罪", value['审理经过'])[0]
+        dict_crime_first_instance_appeal[key] = re.findall(r"指控被告人.*犯.*罪|被告人.*罪|被告人.*某.*一案|被告人.*一案|指控.*罪", value['审理经过'])
     except:
         error_list1.append((key, value))
         #print((key,value))
