@@ -5,6 +5,7 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 
+#判断驳回类
 def easy_case1(dict,easy_dict,error):
     dict_new = {}
     for key, value in dict.items():
@@ -17,6 +18,7 @@ def easy_case1(dict,easy_dict,error):
             error.update({key:value})
     return dict_new
 
+#判断撤回类
 def easy_case2(dict,easy_dict,error):
     dict_new = {}
     for key, value in dict.items():
@@ -44,9 +46,11 @@ def easy_case2(dict,easy_dict,error):
 #     for i in remove_list:
 #         dict_crime_second_instances.pop(i)
 
+#傻瓜代码，但是有用。用别的形式出了bug，所以就保留下来了
 def empty(c):
     return (c != [[]] and c != [] and c != [[],[]] and c != [[],[],[]] and c !=[[],[],[],[]] )
 
+#对appeal的内容进行提取与分类
 def find_appeal_class(input):
     all_class = ['赔偿/偿还', '诉讼费', '责任', '改判']
     c_0 = []
@@ -64,7 +68,7 @@ def find_appeal_class(input):
     return match_list_appeal
 
 
-
+#对reply的内容进行提取与分类
 def find_reply_class(input):
     all_class = ['赔偿/偿还', '诉讼费', '责任' ,'改判']
     c_0 = []
@@ -80,13 +84,15 @@ def find_reply_class(input):
     match_list_reply = [empty(c_0), empty(c_1), empty(c_2), empty(c_3)]
     return match_list_reply
 
+#判断appeal所具有的类别和reply所具有的类别是否匹配
 def match(appeal, reply):
     for i in range(len(appeal)):
         if appeal[i] == True and reply[i] == False:
             return False
     return True
 
-def main(dict_civil_instances, l_1, l_2, complex_appeal, class_appeal, class_reply, _format, error_a,error_b):
+#主函数。对于剩余内容进行处理，如果没有label_1/label_2则放入error_xxx。如果两个label都有，且不匹配，放入error_xx
+def main(dict_civil_instances, l_1, l_2, complex_appeal, class_appeal, class_reply, _format, error_xx,error_xxx):
     for key, value in dict_civil_instances.items():
         if l_1 in value.keys() and l_2 in value.keys():
             complex_appeal[key] = re.findall(_format,value[l_1])
@@ -94,12 +100,13 @@ def main(dict_civil_instances, l_1, l_2, complex_appeal, class_appeal, class_rep
             # complex_reply[key] = re.findall( r"", value[l_2])
             class_reply[key] = find_reply_class(value[l_2])
             if match(class_appeal[key], class_reply[key]) == False:
-                error_a.update({key: value})
+                error_xx.update({key: value})
             else:
                 continue
         else:
-            error_b.update({key: value})
+            error_xxx.update({key: value})
 
+#处理error_xxx的内容，如果匹配则pop出去，如果不匹配则放入error_xx。没有需要的label留下
 def solve_error_xxx(error_xxx,error_xx,complex_appeal,class_appeal,class_reply,pop_list):
     for key, value in error_xxx.items():
         if "审理经过" in value.keys() and "裁判结果" in value.keys():
@@ -115,7 +122,7 @@ def solve_error_xxx(error_xxx,error_xx,complex_appeal,class_appeal,class_reply,p
     for i in pop_list:
         error_xxx.pop(i)
 
-
+#处理error_x的内容，如果匹配则pop出去，如果不匹配则放入error_xx。没有需要的label留下
 def solve_error_x(error_x,error_xx,complex_appeal,class_appeal,class_reply,pop_list,label,_format):
     for key, value in error_x.items():
         if label in value.keys() and "本院认为" in value.keys():

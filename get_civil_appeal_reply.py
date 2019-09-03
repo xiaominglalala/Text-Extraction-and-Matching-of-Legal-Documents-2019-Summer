@@ -1,5 +1,6 @@
 from util import *
 
+#下面三个dict存储民事中三个类型的案件
 dict_civil_instances_1 = {}
 dict_civil_instances_2 = {}
 dict_civil_instances_3 = {}
@@ -42,6 +43,7 @@ while 1:
             except:
                 continue
 
+#确定案件数目
 all_1 = len(dict_civil_instances_1)
 all_2 = len(dict_civil_instances_2)
 all_3 = len(dict_civil_instances_3)
@@ -139,21 +141,18 @@ match_len_3 = len(dict_civil_instances_3.keys()) - len(error_333) - len(error_33
 rate_3 = float(100*match_len_3 / len(dict_civil_instances_3.keys()))
 
 ###实验结果
+rate_11 = float( 100*(all_1 - len(error_111) - len(error_11) - len(error_1))/all_1 )
+rate_22 = float( 100*(all_2 - len(error_222) - len(error_22) - len(error_2))/all_2 )
+rate_33 = float( 100*(all_3 - len(error_222) - len(error_33) - len(error_3))/all_3 )
+rate_all = float( 100*((all_1 - len(error_111) - len(error_11) - len(error_1))+(all_2 - len(error_222) - len(error_22) - len(error_2))+(all_3 - len(error_222) - len(error_33) - len(error_3)))/(all_1+all_2+all_3) )
 
 print("复杂类：")
 print("一审中匹配数目：" + str(match_len_1) + " 匹配率：" + str(rate_1)+"%")
 print("二审中匹配数目：" + str(match_len_2) + " 匹配率：" + str(rate_2)+"%")
 print("再审中匹配数目：" + str(match_len_3) + " 匹配率：" + str(rate_3)+"%")
 print("总体：")
-rate_11 = float( 100*(all_1 - len(error_111) - len(error_11) - len(error_1))/all_1 )
-rate_22 = float( 100*(all_2 - len(error_222) - len(error_22) - len(error_2))/all_2 )
-rate_33 = float( 100*(all_3 - len(error_222) - len(error_33) - len(error_3))/all_3 )
-rate_all = float( 100*((all_1 - len(error_111) - len(error_11) - len(error_1))+(all_2 - len(error_222) - len(error_22) - len(error_2))+(all_3 - len(error_222) - len(error_33) - len(error_3)))/(all_1+all_2+all_3) )
-
 print("一审匹配率：" + str(rate_11)+"%")
 print("二审匹配率："+ str(rate_22)+"%")
 print("再审匹配率："+ str(rate_33)+"%")
 print("民事总体匹配率："+ str(rate_all)+"%")
 
-for i in error_222:
-    print(i)
